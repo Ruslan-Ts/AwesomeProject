@@ -17,11 +17,11 @@ export default function App() {
 		<RegistrationScreen />
 		// <LoginScreen />
 
-		// {/* <View style={styles.container}>
+		// <View style={styles.container}>
 		// 	<ImageBackground
 		// 		source={require("./assets/images/BG.jpeg")}
 		// 		style={styles.image}></ImageBackground>
-		// </View> */}
+		// </View>
 	);
 }
 

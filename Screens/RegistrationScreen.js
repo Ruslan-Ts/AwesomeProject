@@ -5,49 +5,67 @@ import {
 	View,
 	StyleSheet,
 	ImageBackground,
+	KeyboardAvoidingView,
+	Platform,
+	TouchableWithoutFeedback,
+	Keyboard,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
+import { useState } from "react";
 
 export const RegistrationScreen = () => {
+	const [login, setLogin] = useState("");
 	return (
-		<View style={styles.container}>
-			<ImageBackground
-				source={require("../assets/images/BG.jpeg")}
-				style={styles.image}></ImageBackground>
+		<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+			<KeyboardAvoidingView
+				behavior={Platform.OS === "ios" ? "padding" : "height"}
+				style={styles.container2}>
+				<View style={styles.container}>
+					<ImageBackground
+						source={require("../assets/images/BG.jpeg")}
+						style={styles.image}></ImageBackground>
 
-			<View style={styles.formBox}>
-				<View style={styles.addPhotoBox}>
-					<TouchableOpacity style={styles.addPhotoImg}>
-						<AntDesign name="pluscircleo" size={24} color="#FF6C00" />
-					</TouchableOpacity>
-				</View>
-				<Text style={styles.title}>Реєстрація</Text>
-				<View style={styles.regForm}>
-					<TextInput style={styles.input} placeholder="Логін" />
-					<TextInput
-						style={styles.input}
-						placeholder="Адреса електронної пошти"
-					/>
-					<View style={styles.passBox}>
-						<TextInput style={styles.input} placeholder="Пароль" />
-						<TouchableOpacity style={styles.showPassBtn}>
-							<Text style={styles.showPassBtnText}>
-								{true ? "Показати" : "Не показувати"}
-							</Text>
-						</TouchableOpacity>
-					</View>
+					<View style={styles.formBox}>
+						<View style={styles.addPhotoBox}>
+							<TouchableOpacity style={styles.addPhotoImg}>
+								<AntDesign name="pluscircleo" size={24} color="#FF6C00" />
+							</TouchableOpacity>
+						</View>
+						<Text style={styles.title}>Реєстрація</Text>
 
-					<TouchableOpacity style={styles.regBtn}>
-						<Text style={styles.regBtnText}>Зареєстуватися</Text>
-					</TouchableOpacity>
-					<View>
-						<TouchableOpacity style={styles.signInBtn}>
-							<Text style={styles.signInBtnText}>Вже є акаунт? Увійти</Text>
-						</TouchableOpacity>
+						<View style={styles.regForm}>
+							<TextInput
+								style={styles.input}
+								placeholder="Логін"
+								value={login}
+								onChangeText={setLogin}
+							/>
+							<TextInput
+								style={styles.input}
+								placeholder="Адреса електронної пошти"
+							/>
+							<View style={styles.passBox}>
+								<TextInput style={styles.input} placeholder="Пароль" />
+								<TouchableOpacity style={styles.showPassBtn}>
+									<Text style={styles.showPassBtnText}>
+										{true ? "Показати" : "Не показувати"}
+									</Text>
+								</TouchableOpacity>
+							</View>
+
+							<TouchableOpacity style={styles.regBtn}>
+								<Text style={styles.regBtnText}>Зареєстуватися</Text>
+							</TouchableOpacity>
+							<View>
+								<TouchableOpacity style={styles.signInBtn}>
+									<Text style={styles.signInBtnText}>Вже є акаунт? Увійти</Text>
+								</TouchableOpacity>
+							</View>
+						</View>
 					</View>
 				</View>
-			</View>
-		</View>
+			</KeyboardAvoidingView>
+		</TouchableWithoutFeedback>
 	);
 };
 
@@ -55,6 +73,11 @@ const styles = StyleSheet.create({
 	container: {
 		position: "relative",
 		flex: 1,
+	},
+	container2: {
+		flex: 1,
+		// justifyContent: "center",
+		// alignItems: "center",
 	},
 	formBox: {
 		justifyContent: "center",
